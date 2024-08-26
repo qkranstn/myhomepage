@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- firebase 라이브러리 CDN 링크로 가져오기 -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
+
+    <!-- firebase 개인 SDK 가져오기 -->
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyBb_LvnvN7i6FEBk4oGvnBBAdIfZIcWYRE",
+            authDomain: "fir-study-1a09a.firebaseapp.com",
+            projectId: "fir-study-1a09a",
+            storageBucket: "fir-study-1a09a.appspot.com",
+            messagingSenderId: "850274002574",
+            appId: "1:850274002574:web:c92fccb041f992f4e08bdf",
+            measurementId: "G-ZYPVTHZX41"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    <style>
+        .btn {
+            padding-left: 12px;
+            padding-right: 12px;
+            padding-top: 8px;
+            padding-bottom: 8px;
+
+            border: 1px solid orange;
+            border-radius: 30px;
+            color: orange;
+
+            background-color: white;
+            cursor: pointer;
+            transition-duration: 0.3s;
+        }
+
+        .btn:hover {
+            background-color: orange;
+            color: white;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div>
+        <input id="inputId" type="text" placeholder="아이디">
+        <button>아이디 확인</button>
+    </div>
+    <br>
+    <div>
+        <input id="inputPw" type="password" placeholder="비밀번호">
+    </div>
+    <br>
+    <div>
+        <input id="inputPw" type="password" placeholder="비밀번호 재입력">
+    </div>
+    <br>
+    <div>
+        <input id="inputName" type="text" placeholder="닉네임">
+    </div>
+    <br>
+    <div>
+        <!-- 체크된 라디오버튼이 어떤 값을 의미하는지 value에 기입해 놓음 -->
+        남성<input type="radio" name="gender" value="male">
+        여성<input type="radio" name="gender" value="female">
+    </div>
+    <button id="signUpBtn" class="btn">회원가입</button>
+
+    <script>
+        const db = firebase.firestore();
+
+        document.getElementById('signUpBtn').addEventListener('click', () => {
+            let v_inputId = document.getElementById('inputId').value;
+            let v_inputPw = document.getElementById('inputPw').value;
+            let v_inputName = document.getElementById('inputName').value;
+
+            console.log(v_inputId);
+            console.log(v_inputPw);
+            console.log(v_inputName);
+
+            // collection은 데이터를 담는 태이블이라 생각
+            //member 테이블에 회원정보를 담을 예정
+            //member 컬렉션에 회원 doument를 담을 예정
+            // .collection('member')member 컬렉션에 접근
+            // .doc(v_inputId) 사용자가 입력한 아이디로 document 선택
+            // .set(json객체) 해당 document 내부에 데이터 추가
+            /*
+            회원정보에 대한 json 객체 생성
+            {
+                memId: 'akow283',
+                memPw: 'a123',
+                memName: '찬웅쌤'
+            }
+            */
+
+            let v_json = {};
+            v_json['memId'] = v_inputId;
+            v_json['memPw'] = v_inputPw;
+            v_json['memName'] = v_inputName
+
+            //firestore 내 member colloection 에 사용자 id에 대한 document에 v_json을 추가
+            db.collection("member").doc(v_inputId).set(v_json)
+                .then(() => {
+                    // 회원가입이 끝난 시점
+                    console.log("Document successfully written!");
+                    alert('회원가입이 완료 되었습니다.')
+                    // 회원가입 끝난 후 페이지 이동
+                    location.href = "./06_DB로그인"
+                })
+                .catch((error) => {
+                    console.error("Error writing document: ", error);
+                });
+        })
+
+
+
+    </script>
+
+</body>
+
+</html>

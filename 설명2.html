@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <style>
+        .container {
+            width: 1200px;
+            height: 800px;
+            margin: auto;
+            background-color: white;
+            position: relative;
+            /* left-navigation을 안보이게 함 */
+            overflow: hidden;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            background-color: white;
+        }
+
+        .navigation>img {
+            width: 50px;
+            cursor: pointer;
+        }
+
+        .left-navigation {
+            width: 300px;
+            border: 2px solid black;
+            height: 100%;
+            position: absolute;
+            background-color: rgb(255, 253, 127);
+            top: 0;
+            left: 0;
+            /* 자신의 가로너비만큼 왼쪽으로 이동 */
+            transform: translate(-100%, 0);
+            transition-duration: 1s;
+        }
+
+
+        img {
+            width: 50px;
+            cursor: pointer;
+        }
+
+        @keyframes drawIn {
+            from {
+                transform: translate(100%, 0);
+            }
+
+            to {
+                transform: translate(0, 0);
+            }
+        }
+
+        .draw-in {
+            animation: drawIn 1s forwards ease;
+        }
+
+        @keyframes drawOut {
+            from {
+                transform: translate(0, 0);
+            }
+
+            to {
+                transform: translate(100%, 0);
+            }
+        }
+
+        .draw-out {
+            animation: drawOut 1s forwards ease;
+        }
+
+        .banner-box {
+            width: 150px;
+            height: 700px;
+
+            margin-top: 30px;
+            margin-right: 100px;
+            position: relative;
+        }
+
+        .banner-box img {
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .king {
+            display: flex;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="king">
+        <div class="container">
+            <div class="navigation">
+                <img id="leftBtn" src="https://cdn-icons-png.flaticon.com/512/1828/1828850.png" alt="">
+                <img src="../resources/images/정부.svg" width="100px">
+            </div>
+            <div class="left-navigation">
+                <img id="closeBtn" src="https://i.pinimg.com/originals/45/12/91/451291bfa39e1e97bb29967fae661646.png"
+                    alt="">
+                <br>
+                <a href="../my/mypage.html">홈화면</a>
+                <hr>
+                <a id="navSignUp" href="../my/설명2.html">재정통계란?</a>
+                <hr>
+                <a id="navLogin" href="./설명1.html">재정통계 기관은?</a>
+                <hr>
+                <a href="../my/mydata2.html">재정통계_총수입</a>
+                <hr>
+                <a href="../my/mydata.html">재정통계_총지출</a>
+            </div>
+            <div>
+                <div>
+                    <h1>예산의 이해</h1>
+                </div>
+                <div>
+                    <div><img src="" alt=""></div>
+                    <div>
+                        <h2>예산(Budget)이란 일정기간에 있어서의 국가 또는 지방자치단체가 달성하고자 하는 목표입니다.</h2>
+                        <br>
+                        <h3>즉 일정기간에 의도하는 행정활동을 수행하는데 필요한 재원을 얼마나 조달할 것이며 조달된 재원을 여러가지 사업 중에서 어떻게 배분하여 어떠한 성과를 거두겠다는 의사를
+                            결정하는 과정이자, 이 과정의 결과물을 금액으로 표시한 것입니다.
+                            예산은 정부(지방자치단체)가 법률 등에서 정하는 바에 따라 일정한 형식에 의거 편성하고 국회(의회)의 심의·의결을 거쳐 확정되는 1회계연도의 재정계획을 말합니다.
+                        </h3>
+                    </div>
+                </div>
+
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
+                            data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane"
+                            aria-selected="true">의미</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="profile-tab" data-bs-toggle="tab"
+                            data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane"
+                            aria-selected="false">재정과의 관계</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="contact-tab" data-bs-toggle="tab"
+                            data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane"
+                            aria-selected="false">성과주의 예산제도</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="disabled-tab" data-bs-toggle="tab"
+                            data-bs-target="#disabled-tab-pane" type="button" role="tab"
+                            aria-controls="disabled-tab-pane" aria-selected="false" disabled>Disabled</button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
+                        tabindex="0">
+                        <div>
+                            <h4>회계연도</h4>
+                            <h5>1월 1일 ~ 12월 31일</h5>
+                            <h4>예산의 성격</h4>
+                            ① 국민 각자나 기업, 이익단체의 입장에서 보면 정부(1년간)의 활동 내역과 방향에 대한 중요한 정보가 되고
+                            ② 정부(지방자치단체)가 한정된 재원을 구체적으로 어떠한 시책과 사업에 배분할 것인가를 계수적으로 표시하고 확정시킨 계획이며
+                            ③ 국민생활의 안정과 복리증진을 수행하기 위한 국민에 대한 약속입니다.
+                        </div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col">구분</th>
+                                    <th scope="col" colspan="2">관계법령</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-group-divider">
+                                <tr>
+                                    <th scope="row"></th>
+                                    <td>정부</td>
+                                    <td></td>
+                                    <td> 국가재정법, 국세기본법, 국세징수법, 소득세법, 법인세법, 부가가치세법, 관세법, 보조금 관리에 관한 법률 등</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"></th>
+                                    <td>지방자치단체</td>
+                                    <td></td>
+                                    <td>지방자치법, 지방재정법, 지방세기본법, 지방세법, 지방세 특례제한법, 지방교부세법, 재정운영조례, 재무회계규칙 등
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"></th>
+                                    <td>공기업 </td>
+                                    <td></td>
+                                    <td> 기업예산회계법(정부기업), 공공기관의 운영에 관한 법률(정부), 지방공기업법(지방공사, 공단)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
+                        tabindex="0">
+                        <img src="../resources/images/세금.png" width="50%" alt="">
+                        <br>
+                        일반회계는 시민의 세금(10개 시세)과 사용료·수수료 등 세외수입을 재원으로 하여 사회복지, 경제개발, 교육·문화 등 기초적인 행정 수요에 충당하고 일반행정 기능을 유지하기
+                        위해 운영되는
+                        것이며, 특별회계는 기타특별회계와 공기업특별회계로 구분할 수 있습니다.
+                        * 중앙재정 : 예산(일반회계, 특별회계), 기금, 세입세출외 현금
+                        * 지방재정 : 예산(일반회계, 특별회계), 기금, 세입세출외 현금
+                        <br>
+                        <br>
+                        기타 특별회계는 특정사업을 운영하거나 또는 특정 세입으로 특정세출에 충당할 경우 설치하는 것으로 현재 9개의 특별회계가 운영되고 있으며, 공기업특별회계는 서울시에 의해
+                        관리되는 공공사업을 위해
+                        설치되며 현재 2개의 공기업 특별회계가 운영되고 있습니다.
+                        * 특별회계 : 도시철도, 교통사업, 광역교통, 주택사업, 도시개발, 하수도사업, 집단에너지공급, 의료급여기금, 한강수질개선
+                        * 공기업특별회계 : 지역개발기금, 수도사업
+                        또한 지하철, 병원, 도시개발 및 농수산물도매 등과 같은 특정 공공사업의 수행을 위해 서울시가 전액 출자하는 독립법인으로 현재 5개 공사 (서울메트로, 도시철도공사,
+                        농수산물공사, SH공사,
+                        시설관리공단)가 있습니다.
+                        지방자치단체는 행정목적의 달성을 위하거나 또는 공익상 필요한 경우에는 재산을 보유하고 자금을 적립하며 기금을 설치할 수 있도록 한 바(지방자치법 제142조) 서울시는 현재
+                        14개의 기금을
+                        운영하고 있습니다.
+                        * 기금현황 : 재정투융자기금, 중소기업육성기금, 식품진흥기금, 기후변화기금, 사회투자기금, 도로굴착복구기금, 여성발전기금, 자원회수 시설, 주변지역주민 지원기금,
+                        사회복지기금, 체육진흥기금,
+                        감채기금, 재난관리기금, 남북교류협력기금, 대외협력기금
+                        재정의 범위에는 세입세출외 현금이 포함되는 바 세입세출외 현금은 ① 공공시설 손실부담금 ② 계약보증금, 입찰보증금, 차액보증금 및 하자 보수보증금 ③ 다른 법률에 의한
+                        예치금 ④ 사무관리상
+                        필요에 의하여 지방자치단체가 일시적으로 보관하는 경비 등을 말합니다.(지방재정법 제34조 및 동법 시행령 제40조)
+                    </div>
+
+                    <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab"
+                        tabindex="0">...
+                    </div>
+
+                    <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab"
+                        tabindex="0">
+                        ...</div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="banner-box">
+            <img id="bannerId" src="../resources/images/세로베너.png" alt="">
+        </div>
+
+    </div>
+
+    <script>
+
+        let v_leftNavi = document.getElementsByClassName('left-navigation')[0];
+
+        document.getElementById('leftBtn').addEventListener('click', () => {
+            v_leftNavi.style.transform = "translate(0, 0)";
+        })
+
+        document.getElementById('closeBtn').addEventListener('click', () => {
+            v_leftNavi.style.transform = "translate(-100%, 0)";
+        })
+
+        let v_rightNavi = document.querySelector('.right-navigtion')
+
+
+        document.getElementById('rightBtn').addEventListener('click', () => {
+            v_rightNavi.classList.add('draw-in')
+            v_rightNavi.classList.remove('draw-out')
+        })
+
+        document.getElementById('closeBtn2').addEventListener('click', () => {
+            v_rightNavi.classList.add('draw-out')
+            v_rightNavi.classList.remove('draw-in')
+        })
+    </script>
+
+    <script>
+        let v_bannerId = document.getElementById('bannerId');
+
+        let v_array = [];
+        v_array.push("../resources/images/세로베너.jpg");
+        v_array.push("../resources/images/세로베너.png");
+
+        let v_index = 0;
+
+        function f_change() {
+            v_index++;
+
+            if (v_index == v_array.length) {
+                v_index = 0;
+            }
+
+            v_bannerId.src = v_array[v_index];
+        }
+
+        setInterval(f_change, 3000);
+
+
+
+    </script>
+
+</body>
+
+</html>

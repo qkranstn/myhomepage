@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="printRst"></div>
+    <button id="reqBtn">데이터요청</button>
+    </div>
+
+    <nav class="nav-bar">
+        <a href="../my/mypage.html">홈화면</a> 
+    </nav>
+
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <div>
+        <canvas id="myChart2"></canvas>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/x2js/1.2.0/xml2json.min.js"
+        integrity="sha512-HX+/SvM7094YZEKOCtG9EyjRYvK8dKlFhdYAnVCGNxMkA59BZNSZTZrqdDlLXp0O6/NjDb1uKnmutUeuzHb3iQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        document.getElementById('reqBtn').addEventListener('click', () => {
+            let v_ajax = new XMLHttpRequest();
+            let v_x2js = new X2JS();
+            // 요청 주소 세팅
+            let v_url = 'https://api.odcloud.kr/api/15132626/v1/uddi:53b5dc3d-d2f7-4d0f-b0bc-a9d988ac6727';
+            let v_query = "?serviceKey=0oZaC6VCDBUuiC7rfq9NKcijWJIz9mCRCvLNUQ8DY6bt4mWV4g5AVcb8kJ5hYED7MC7ihKT%2Bp8xp9YX2Yqq8Ow%3D%3D";
+            v_query += "&page=1&perPage=100&returnType=json";
+            // .open(방식, 요청주소)
+            v_ajax.open("GET", v_url + v_query);
+            v_ajax.onload = function () {
+                console.log(v_ajax.response);  // JSON 문자열
+                //json string ->  json 객체로 변환
+                let v_json = JSON.parse(v_ajax.response)
+                console.log(v_json);
+
+                let v_data = v_json['data'];
+                console.log(v_data);  // 배열
+
+                let v_labels = [];
+                for (let i = 0; i < v_data.length; i++) {
+                    v_labels.push(v_data[i]['연도']);
+                }
+                console.log(v_labels)
+
+                let v_krwArray = [];
+
+                for (let i = 0; i < v_data.length; i++) {
+                    v_krwArray.push(v_data[i]['기금(조원)']);
+                }
+                console.log(v_krwArray);
+
+                let v_krwArray2 = [];
+                for (let i = 0; i < v_data.length; i++) {
+                    v_krwArray2.push(v_data[i]['세입외(조원)']);
+                }
+
+                let v_krwArray3 = [];
+                for (let i = 0; i < v_data.length; i++) {
+                    v_krwArray3.push(v_data[i]['예산_일반회계(조원)']);
+                }
+
+                let v_krwArray4 = [];
+                for (let i = 0; i < v_data.length; i++) {
+                    v_krwArray4.push(v_data[i]['예산_특별회계(조원)']);
+                }
+
+                let v_krwArray5 = [];
+                for (let i = 0; i < v_data.length; i++) {
+                    v_krwArray5.push(v_data[i]['GDP대비 비율(퍼센트)']);
+                }
+
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: v_labels,
+                        datasets: [{
+                            label: '기금(조원)',
+                            data: v_krwArray,
+                            borderWidth: 5,
+                            pointRadius: 0
+                        }, {
+                            label: '세입외(조원)',
+                            data: v_krwArray2,
+                            borderWidth: 5,
+                            pointRadius: 0
+                        }, {
+                            label: '예산_일반회계(조원)',
+                            data: v_krwArray3,
+                            borderWidth: 5,
+                            pointRadius: 0
+                        }, {
+                            label: '예산_특별회계(조원)',
+                            data: v_krwArray4,
+                            borderWidth: 5,
+                            pointRadius: 0
+                        }]
+                    },
+                    options: {
+                        elements: {
+                            line: {
+                                tension: 0.2  // 수치가 클수록 부드럽게 그려준다
+                            }
+                        }
+                    }
+                });
+                let ctx2 = document.getElementById('myChart2')
+                new Chart(ctx2, {
+                    type: 'bar',
+                    data: {
+                        labels: v_labels,
+                        datasets: [{
+                            data: v_krwArray5,
+                        }]
+                    }
+                });
+
+            };
+            v_ajax.send();
+            console.log("통신 요청 했음");
+
+        });
+
+        let ctx = document.getElementById('myChart');
+        let v_chart = null;
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            width: 1200px;
+            height: 100%;
+            border: 0px solid black;
+            margin: auto;
+            background-color: #ffffff;
+            position: relative;
+            /* left-navigation을 안보이게 함 */
+            overflow: hidden;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            background-color: white;
+        }
+
+        .navigation>img {
+            width: 50px;
+            cursor: pointer;
+        }
+
+        .left-navigation {
+            width: 300px;
+            border: 0px solid black;
+            height: 100%;
+            position: absolute;
+            background-color: rgb(255, 253, 127);
+            top: 0;
+            left: 0;
+            /* 자신의 가로너비만큼 왼쪽으로 이동 */
+            transform: translate(-100%, 0);
+            transition-duration: 1s;
+        }
+
+
+        img {
+            width: 50px;
+            cursor: pointer;
+        }
+
+        @keyframes drawIn {
+            from {
+                transform: translate(100%, 0);
+            }
+
+            to {
+                transform: translate(0, 0);
+            }
+        }
+
+        .draw-in {
+            animation: drawIn 1s forwards ease;
+        }
+
+        @keyframes drawOut {
+            from {
+                transform: translate(0, 0);
+            }
+
+            to {
+                transform: translate(100%, 0);
+            }
+        }
+
+        .draw-out {
+            animation: drawOut 1s forwards ease;
+        }
+
+        .card {
+            display: flex;
+            height: 100%;
+            border: 0px solid black;
+        }
+
+        .text {
+            width: 50%;
+            height: 360px;
+            border: 1px solid black;
+        }
+
+        .map {
+            width: 50%;
+        }
+
+        .top{
+            background-color: white;
+
+            position: fixed;
+            right: 40px;
+            bottom: 40px;
+            border: 1px solid orange;
+            border-radius: 15%;
+        }
+
+        .top > a{
+            display: inline-block;
+            padding: 10px;
+            text-decoration: none;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="navigation">
+            <img id="leftBtn" src="https://cdn-icons-png.flaticon.com/512/1828/1828850.png" alt="">
+            <img src="../resources/images/정부.svg" width="100px">
+        </div>
+        <div class="left-navigation">
+            <img id="closeBtn" src="https://i.pinimg.com/originals/45/12/91/451291bfa39e1e97bb29967fae661646.png"
+                alt="">
+            <br>
+            <a href="../my/mypage.html">홈화면</a>
+            <hr>
+            <a id="navSignUp" href="../my/설명2.html">재정통계란?</a>
+            <hr>
+            <a id="navLogin" href="./설명1.html">재정통계 기관은?</a>
+            <hr>
+            <a href="../my/mydata2.html">재정통계_총수입</a>
+            <hr>
+            <a href="../my/mydata.html">재정통계_총지출</a>
+        </div>
+        <div>
+            <div class="card">
+                <div class="text">
+                    <h3>기획재정부</h3>
+                    <h4>1. 대한민국의 재정 및 경제정책 총괄, 국가의 중장기적인 발전 전략 수립, 조세·외환(국제금융 등)과 관련된 총체적인 계획을 세운다.
+                        <br>
+                        2. 국가예산을 수립하거나 편성·관리하며, 국고·국유재산에 대한 관할 업무를 담당한다.
+                        <br>
+                        3. 기획재정부장관은 부총리를 겸하며, 대통령과 국무총리를 제외한 장관들 중에서는 서열상 지위가 가장 높다. 따라서 국무총리가 없을 시에는 부총리 겸 기획재정부장관이 국무총리를 대행한다. 만약 대통령, 국무총리가 동시에 부재할 경우에는 부총리 겸 기획재정부장관이 대통령 권한을 대행한다. 모든 정부 산하 공공기관(공기업, 준정부기관 등)을 총괄 관리·감독하는 역할도 한다. 기획재정부 공공기관 경영정보 공개시스템(알리오) 경제 정책과 국가 예산을 총체적으로 관리하는 부처인 만큼, 중앙행정기관 중에서 가장 막강한 권력을 가지고 있다.
+                        <br>
+                        경제 부총리는 경제관계장관회의 규정(대통령령)에 따라 경제관계장관회의를 주재하며, 대외경제장관회의규정(대통령령)에 따라 대외경제장관회의를 주재한다.</h4>
+                    <a href="https://www.moef.go.kr/">https://www.moef.go.kr/</a>
+                </div>
+                <div class="map">
+
+                    <div id="daumRoughmapContainer1724286834207" class="root_daum_roughmap root_daum_roughmap_landing">
+                    </div>
+
+                    <script charset="UTF-8" class="daum_roughmap_loader_script"
+                        src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+
+                    <script charset="UTF-8">
+                        new daum.roughmap.Lander({
+                            "timestamp": "1724286834207",
+                            "key": "2kevz",
+                            "mapWidth": "640",
+                            "mapHeight": "360"
+                        }).render();
+                    </script>
+                </div>
+            </div>
+            <div class="card">
+                <div class="text">
+                    <h3>국회예산정책처</h3>
+                    <h4>예산안·결산·기금운용계획안 및 기금결산에 대한 연구 및 분석
+                        예산 또는 기금상의 조치가 수반되는 법률안 등 의안에 대한 소요비용의 추계
+                        국가재정운용 및 거시경제동향의 분석 및 전망
+                        국가의 주요 사업에 대한 분석·평가 및 중·장기재정소요 분석
+                        국회의 위원회 또는 국회의원이 요구하는 사항의 조사 및 분석</h4>
+                        <a href="https://www.nabo.go.kr/">https://www.nabo.go.kr/</a>
+                </div>
+                <div class="map">
+                    <div id="daumRoughmapContainer1724286417488" class="root_daum_roughmap root_daum_roughmap_landing">
+                    </div>
+                    <script charset="UTF-8" class="daum_roughmap_loader_script"
+                        src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+                    <script charset="UTF-8">
+                        new daum.roughmap.Lander({
+                            "timestamp": "1724286417488",
+                            "key": "2keus",
+                            "mapWidth": "640",
+                            "mapHeight": "360"
+                        }).render();
+                    </script>
+                </div>
+            </div>
+            <div class="card">
+                <div class="text">
+                    <h3>한국재정정보원</h3>    
+                    <h4>디지털예산회계시스템의 운영 및 관리
+                        재정 관련 통계의 관리
+                        국민을 대상으로 하는 디지털예산회계시스템 인터넷 홈페이지의 운영
+                        디지털예산회계시스템의 수출 등 재정정보화 분야의 국제협력
+                        재정 분야 정보통신망 또는 이와 관련된 정보시스템에 대한 보안관제센터(사이버공격 정보를 탐지·분석하여 즉시 대응 조치를 할 수 있는 기구를 말한다)의 운영 및 관리
+                        그 밖에 국가, 지방자치단체 또는 공공기관 등으로부터 위탁받은 사업</h4>    
+                        <a href="https://www.fis.kr/ko">https://www.fis.kr/ko</a>
+                </div>
+                <div class="map">
+                    <div id="daumRoughmapContainer1724286665761" class="root_daum_roughmap root_daum_roughmap_landing">
+                    </div>
+                    <script charset="UTF-8" class="daum_roughmap_loader_script"
+                        src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+                    <script charset="UTF-8">
+                        new daum.roughmap.Lander({
+                            "timestamp": "1724286665761",
+                            "key": "2keuw",
+                            "mapWidth": "640",
+                            "mapHeight": "360"
+                        }).render();
+                    </script>
+                </div>
+            </div>
+            <div class="card">
+                <div class="text">
+                    <h3>한국조세재정연구원</h3>    
+                    <h4>1991년 한국조세연구원법이 신설되고, 1992년 재무부 산하 한국조세연구원이 출범했으며 1999년 국무총리 산하 경제사회연구회 소관 한국조세연구원, 2005년 경제·인문사회연구회 소관 한국조세연구원을 거쳐 2013년 7월 한국조세재정연구원으로 바뀌었다. 원장과 부원장 아래 연구기획실 등 여러 부서를 두고 있다.
+                    </h4>    
+                    <a href="https://www.kipf.re.kr/kor/">https://www.kipf.re.kr/kor/</a>
+                </div>
+                <div class="map">
+                    <div id="daumRoughmapContainer1724286720416" class="root_daum_roughmap root_daum_roughmap_landing">
+                    </div>
+                    <script charset="UTF-8" class="daum_roughmap_loader_script"
+                        src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+                    <script charset="UTF-8">
+                        new daum.roughmap.Lander({
+                            "timestamp": "1724286720416",
+                            "key": "2keux",
+                            "mapWidth": "640",
+                            "mapHeight": "360"
+                        }).render();
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="top">
+        <a href="#">↑</a>
+    </div>
+
+    <script>
+
+        let v_leftNavi = document.getElementsByClassName('left-navigation')[0];
+
+        document.getElementById('leftBtn').addEventListener('click', () => {
+            v_leftNavi.style.transform = "translate(0, 0)";
+        })
+
+        document.getElementById('closeBtn').addEventListener('click', () => {
+            v_leftNavi.style.transform = "translate(-100%, 0)";
+        })
+
+        let v_rightNavi = document.querySelector('.right-navigtion')
+
+
+        document.getElementById('rightBtn').addEventListener('click', () => {
+            v_rightNavi.classList.add('draw-in')
+            v_rightNavi.classList.remove('draw-out')
+        })
+
+        document.getElementById('closeBtn2').addEventListener('click', () => {
+            v_rightNavi.classList.add('draw-out')
+            v_rightNavi.classList.remove('draw-in')
+        })
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인</title>
+
+    <style>
+        .container {
+            width: 400px;
+            margin: auto;
+        }
+
+        h1 {
+            margin-top: 100px;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .input-container {
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #DDDDDD;
+        }
+
+        .input-box {
+            border-radius: 10px;
+            border: 1px solid #DDDDDD;
+        }
+
+        .input-box input {
+            border: 0;
+            outline: none;
+            font-size: 16px;
+        }
+
+        .input-box hr {
+            border: 1px solid #DDDDDD;
+            margin: 0;
+        }
+
+        .input-box>div {
+            padding: 10px;
+        }
+
+        .btn {
+            margin-top: 40px;
+            background-color: orange;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            text-align: center;
+            border-radius: 10px;
+            padding-top: 16px;
+            padding-bottom: 16px;
+            cursor: pointer;
+            border: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>로그인</h1>
+        <div class="input-container">
+            <form action="./15_로그인요청받기.html" method="post">
+                <div class="input-box">
+                    <div>
+                        <!-- 키값 id 에 대해 name 속성에 기입 -->
+                        <input type="text" name="id" placeholder="아이디 또는 전화번호">
+                    </div>
+                    <hr>
+                    <div>
+                        <!-- 키값 pw 에 대해 name 속성에 기입 -->
+                        <input type="password" name="pw" placeholder="비밀번호">
+                    </div>
+                </div>
+                <!-- button 태그의 type 을 submit으로 놓으면 클릭시 form 태그에 대해 submit이 실행됨 -->
+                <button type="submit" class="btn">로그인</button>
+            </form>
+        </div>
+    </div>
+    <script>
+
+        let v_id = document.querySelector('input[type=text]');
+        let v_pw = document.querySelector('input[type=password]');
+
+        document.querySelector('.btn').addEventListener('click', () => {
+            console.log(v_id.value);
+            console.log(v_pw.value);
+
+            // 페이지 전환하면서 데이터를 보냄
+            location.href = "./15_로그인요청받기.html?id=" + v_id.value
+                + "&pw=" + v_pw.value;
+        });
+
+    </script>
+
+</body>
+
+</html>
